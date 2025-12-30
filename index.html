@@ -11,35 +11,35 @@
         .tagline { color: #888; letter-spacing: 3px; font-size: 0.9rem; margin-top: 10px; }
         .btn { background: linear-gradient(45deg, #D4AF37, #F9E498); color: #000; padding: 15px 40px; border-radius: 30px; font-weight: bold; text-decoration: none; display: inline-block; margin-top: 25px; transition: 0.3s; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); }
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; max-width: 400px; margin: 20px auto; }
-        .box { border: 1px solid #333; padding: 12px; color: #D4AF37; text-decoration: none; font-size: 0.75rem; letter-spacing: 1px; border-radius: 8px; transition: 0.3s; }
+        .box { border: 1px solid #333; padding: 12px; color: #D4AF37; text-decoration: none; font-size: 0.75rem; letter-spacing: 1px; border-radius: 8px; transition: 0.3s; display: block; }
         .box:hover { border-color: #D4AF37; background: #111; }
 
-        /* --- Chatbot Styling --- */
-        #ai-btn { position: fixed; bottom: 20px; right: 20px; cursor: pointer; z-index: 1000; transition: 0.3s; }
-        #ai-btn:hover { transform: scale(1.1); }
-        #chat-window { display: none; position: fixed; bottom: 85px; right: 20px; width: 320px; height: 450px; background: #111; border: 1px solid #D4AF37; border-radius: 15px; flex-direction: column; z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.5); text-align: left; }
-        #chat-header { background: #D4AF37; color: #000; padding: 15px; border-radius: 13px 13px 0 0; font-weight: bold; font-family: sans-serif; display: flex; justify-content: space-between; }
-        #chat-content { flex: 1; overflow-y: auto; padding: 15px; color: #eee; font-family: sans-serif; font-size: 14px; display: flex; flex-direction: column; }
+        /* Chatbot Styling */
+        #ai-btn { position: fixed; bottom: 20px; right: 20px; cursor: pointer; z-index: 1000; }
+        #chat-window { display: none; position: fixed; bottom: 85px; right: 20px; width: 320px; height: 450px; background: #111; border: 1px solid #D4AF37; border-radius: 15px; flex-direction: column; z-index: 1000; text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        #chat-header { background: #D4AF37; color: #000; padding: 15px; border-radius: 13px 13px 0 0; font-weight: bold; display: flex; justify-content: space-between; }
+        #chat-content { flex: 1; overflow-y: auto; padding: 15px; color: #eee; font-family: sans-serif; display: flex; flex-direction: column; }
         .input-area { padding: 10px; border-top: 1px solid #333; display: flex; }
         #user-msg { flex: 1; background: #222; border: 1px solid #444; color: #fff; padding: 10px; border-radius: 5px; outline: none; }
         #send-btn { background: #D4AF37; border: none; padding: 10px 15px; margin-left: 5px; border-radius: 5px; cursor: pointer; font-weight: bold; }
-        .msg { margin-bottom: 12px; padding: 8px 12px; border-radius: 10px; max-width: 85%; line-height: 1.5; }
+        .msg { margin-bottom: 12px; padding: 8px 12px; border-radius: 10px; max-width: 85%; }
         .user-msg { align-self: flex-end; background: #D4AF37; color: #000; }
         .ai-msg { align-self: flex-start; background: #222; border: 1px solid #333; color: #D4AF37; }
     </style>
 </head>
 <body>
+
     <div class="hero">
         <h1>EMPIRE</h1>
         <div class="tagline">PREMIUM DIGITAL EXPERIENCE</div>
-        <a href="#" class="btn">ENTER THE EMPIRE</a>
+        <a href="https://google.com" class="btn">ENTER THE EMPIRE</a>
     </div>
 
     <div class="grid">
-        <a href="#" class="box">FACEBOOK</a>
-        <a href="#" class="box">TELEGRAM</a>
-        <a href="#" class="box">YOUTUBE</a>
-        <a href="#" class="box">TIKTOK</a>
+        <a href="https://www.facebook.com" class="box" target="_blank">FACEBOOK</a>
+        <a href="https://t.me" class="box" target="_blank">TELEGRAM</a>
+        <a href="https://www.youtube.com" class="box" target="_blank">YOUTUBE</a>
+        <a href="https://www.tiktok.com" class="box" target="_blank">TIKTOK</a>
     </div>
 
     <div id="ai-btn" onclick="toggleChat()">
@@ -47,15 +47,10 @@
     </div>
 
     <div id="chat-window">
-        <div id="chat-header">
-            <span>Empire AI ✨</span>
-            <span onclick="toggleChat()" style="cursor:pointer;">✖</span>
-        </div>
-        <div id="chat-content">
-            <div class="msg ai-msg">မင်္ဂလာပါ! ဘာများ ကူညီပေးရမလဲဟင်?</div>
-        </div>
+        <div id="chat-header"><span>Empire AI ✨</span><span onclick="toggleChat()" style="cursor:pointer;">✖</span></div>
+        <div id="chat-content"><div class="msg ai-msg">မင်္ဂလာပါ ကိုကိုကြီး! ဘာများ ကူညီပေးရမလဲဟင်?</div></div>
         <div class="input-area">
-            <input type="text" id="user-msg" placeholder="တစ်ခုခု ရေးသားပါ..." onkeypress="if(event.key==='Enter')askAI()">
+            <input type="text" id="user-msg" placeholder="မြန်မာလို မေးမြန်းနိုင်ပါတယ်..." onkeypress="if(event.key==='Enter')askAI()">
             <button id="send-btn" onclick="askAI()">ပို့</button>
         </div>
     </div>
@@ -87,16 +82,11 @@
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
-                        contents: [{ 
-                            parts: [{ 
-                                text: "You are a multilingual AI. ALWAYS respond in the EXACT same language as the user's input. If user speaks Myanmar, reply in Myanmar. If English, reply in English. Input: " + userText 
-                            }] 
-                        }]
+                        contents: [{ parts: [{ text: "Always identify the language of user input and respond in that same language. If input is Burmese, reply in Burmese. User: " + userText }] }]
                     })
                 });
                 const data = await response.json();
-                const aiResponse = data.candidates[0].content.parts[0].text;
-                document.getElementById(loadingId).innerText = aiResponse;
+                document.getElementById(loadingId).innerText = data.candidates[0].content.parts[0].text;
             } catch (error) {
                 document.getElementById(loadingId).innerText = "အမှားတစ်ခုရှိနေပါတယ် ကိုကိုကြီး။ VPN ကို စစ်ပေးပါ။";
             }
