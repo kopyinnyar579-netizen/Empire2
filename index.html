@@ -1,102 +1,154 @@
 <!DOCTYPE html>
 <html lang="my">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GEMPIRE - Exclusive Access</title>
-    <style>
-        body { background-color: #000; color: #D4AF37; font-family: 'Times New Roman', serif; text-align: center; margin: 0; padding: 20px; display: flex; flex-direction: column; min-height: 100vh; justify-content: center; position: relative; }
-        .hero { border: 2px solid #D4AF37; padding: 40px 20px; margin-bottom: 30px; border-radius: 15px; background: rgba(212, 175, 55, 0.05); }
-        h1 { font-size: 2.5rem; letter-spacing: 5px; margin: 0; }
-        .tagline { color: #888; letter-spacing: 3px; font-size: 0.9rem; margin-top: 10px; }
-        .btn { background: linear-gradient(45deg, #D4AF37, #F9E498); color: #000; padding: 15px 40px; border-radius: 30px; font-weight: bold; text-decoration: none; display: inline-block; margin-top: 25px; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); }
-        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; max-width: 400px; margin: 20px auto; }
-        .box { border: 1px solid #333; padding: 12px; color: #D4AF37; text-decoration: none; font-size: 0.75rem; border-radius: 8px; display: block; transition: 0.3s; }
-        .box:hover { border-color: #D4AF37; background: #111; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EMPIRE</title>
 
-        /* Chatbot UI */
-        #ai-btn { position: fixed; bottom: 20px; right: 20px; cursor: pointer; z-index: 1000; }
-        #chat-window { display: none; position: fixed; bottom: 85px; right: 20px; width: 320px; height: 450px; background: #111; border: 1px solid #D4AF37; border-radius: 15px; flex-direction: column; z-index: 1000; text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        #chat-header { background: #D4AF37; color: #000; padding: 15px; border-radius: 13px 13px 0 0; font-weight: bold; display: flex; justify-content: space-between; }
-        #chat-content { flex: 1; overflow-y: auto; padding: 15px; color: #eee; font-family: sans-serif; font-size: 14px; display: flex; flex-direction: column; }
-        .input-area { padding: 10px; border-top: 1px solid #333; display: flex; }
-        #user-msg { flex: 1; background: #222; border: 1px solid #444; color: #fff; padding: 10px; border-radius: 5px; outline: none; }
-        #send-btn { background: #D4AF37; border: none; padding: 10px 15px; margin-left: 5px; border-radius: 5px; cursor: pointer; font-weight: bold; }
-        .msg { margin-bottom: 12px; padding: 8px 12px; border-radius: 10px; max-width: 85%; line-height: 1.5; }
-        .user-msg { align-self: flex-end; background: #D4AF37; color: #000; }
-        .ai-msg { align-self: flex-start; background: #222; border: 1px solid #333; color: #D4AF37; }
-    </style>
+<style>
+body {
+    background:#000;
+    color:#D4AF37;
+    font-family: 'Times New Roman', serif;
+    text-align:center;
+    margin:0;
+    padding:20px;
+}
+.hero {
+    border:2px solid #D4AF37;
+    padding:40px 20px;
+    border-radius:15px;
+}
+.grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    max-width:400px;
+    margin:30px auto;
+}
+.box {
+    border:1px solid #333;
+    padding:15px;
+    color:#D4AF37;
+    text-decoration:none;
+    border-radius:8px;
+}
+.box:hover { background:#111; }
+
+#ai-btn {
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    cursor:pointer;
+}
+#chat-window {
+    display:none;
+    position:fixed;
+    bottom:90px;
+    right:20px;
+    width:320px;
+    height:450px;
+    background:#111;
+    border:1px solid #D4AF37;
+    border-radius:15px;
+    flex-direction:column;
+}
+#chat-header {
+    background:#D4AF37;
+    color:#000;
+    padding:10px;
+    display:flex;
+    justify-content:space-between;
+}
+#chat-content {
+    flex:1;
+    overflow-y:auto;
+    padding:10px;
+}
+.msg {
+    margin-bottom:10px;
+    padding:8px 10px;
+    border-radius:8px;
+    max-width:80%;
+}
+.user-msg {
+    background:#D4AF37;
+    color:#000;
+    margin-left:auto;
+}
+.ai-msg {
+    background:#222;
+}
+.input-area {
+    display:flex;
+    padding:10px;
+}
+input {
+    flex:1;
+    padding:8px;
+}
+button {
+    padding:8px 12px;
+    background:#D4AF37;
+    border:none;
+}
+</style>
 </head>
+
 <body>
 
-    <div class="hero">
-        <h1>EMPIRE</h1>
-        <div class="tagline">PREMIUM DIGITAL EXPERIENCE</div>
-        <a href="https://google.com" class="btn">ENTER THE EMPIRE</a>
+<div class="hero">
+    <h1>EMPIRE</h1>
+    <p>PREMIUM DIGITAL EXPERIENCE</p>
+</div>
+
+<div class="grid">
+    <a class="box" href="https://facebook.com" target="_blank">FACEBOOK</a>
+    <a class="box" href="https://t.me" target="_blank">TELEGRAM</a>
+    <a class="box" href="https://youtube.com" target="_blank">YOUTUBE</a>
+    <a class="box" href="https://tiktok.com" target="_blank">TIKTOK</a>
+</div>
+
+<div id="ai-btn" onclick="toggleChat()">💬</div>
+
+<div id="chat-window">
+    <div id="chat-header">
+        <span>Empire AI</span>
+        <span onclick="toggleChat()">✖</span>
     </div>
-
-    <div class="grid">
-        <a href="https://www.facebook.com" class="box" target="_blank">FACEBOOK</a>
-        <a href="https://t.me" class="box" target="_blank">TELEGRAM</a>
-        <a href="https://www.youtube.com" class="box" target="_blank">YOUTUBE</a>
-        <a href="https://www.tiktok.com" class="box" target="_blank">TIKTOK</a>
+    <div id="chat-content">
+        <div class="msg ai-msg">မင်္ဂလာပါ! Hello! Hola!</div>
     </div>
-
-    <div id="ai-btn" onclick="toggleChat()">
-        <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d473530c24e781fb9160.svg" width="50" style="background: #D4AF37; border-radius: 50%; padding: 10px;">
+    <div class="input-area">
+        <input id="user-msg" placeholder="စာရိုက်ပါ..." onkeypress="if(event.key==='Enter')askAI()">
+        <button onclick="askAI()">ပို့</button>
     </div>
+</div>
 
-    <div id="chat-window">
-        <div id="chat-header"><span>Empire AI ✨</span><span onclick="toggleChat()" style="cursor:pointer;">✖</span></div>
-        <div id="chat-content"><div class="msg ai-msg">မင်္ဂလာပါ ကိုကိုကြီး! ဘာများ ကူညီပေးရမလဲဟင်?</div></div>
-        <div class="input-area">
-            <input type="text" id="user-msg" placeholder="ဒီမှာ မြန်မာလို ရိုက်ပါ..." onkeypress="if(event.key==='Enter')askAI()">
-            <button id="send-btn" onclick="askAI()">ပို့</button>
-        </div>
-    </div>
+<script>
+function toggleChat(){
+    const c = document.getElementById("chat-window");
+    c.style.display = c.style.display === "flex" ? "none" : "flex";
+}
 
-    <script>
-        const API_KEY = "AIzaSyA0ubyLBeHP2DqNeg6vV62gxS-s82Vp3cI";
+function askAI(){
+    const input = document.getElementById("user-msg");
+    const text = input.value.trim();
+    if(!text) return;
 
-        function toggleChat() {
-            const win = document.getElementById('chat-window');
-            win.style.display = (win.style.display === 'flex') ? 'none' : 'flex';
-        }
+    const chat = document.getElementById("chat-content");
+    chat.innerHTML += `<div class="msg user-msg">${text}</div>`;
 
-        async function askAI() {
-            const input = document.getElementById('user-msg');
-            const content = document.getElementById('chat-content');
-            const userText = input.value.trim();
-            if (!userText) return;
+    let reply = "Hello!";
+    if(/[\u1000-\u109F]/.test(text)) reply = "မြန်မာလို ပြန်ပါတယ် 🙂";
+    else if(/[a-zA-Z]/.test(text)) reply = "Replying in English 🙂";
+    else reply = "Responding in your language 🙂";
 
-            content.innerHTML += `<div class="msg user-msg">${userText}</div>`;
-            input.value = "";
-            content.scrollTop = content.scrollHeight;
+    chat.innerHTML += `<div class="msg ai-msg">${reply}</div>`;
+    input.value="";
+    chat.scrollTop = chat.scrollHeight;
+}
+</script>
 
-            const loadingId = "loading-" + Date.now();
-            content.innerHTML += `<div id="${loadingId}" class="msg ai-msg">စဉ်းစားနေပါတယ်...</div>`;
-            content.scrollTop = content.scrollHeight;
-
-            try {
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        contents: [{ 
-                            parts: [{ 
-                                text: "Always identify user language and respond in the EXACT same language. If input is Burmese, reply in Burmese only. User input: " + userText 
-                            }] 
-                        }]
-                    })
-                });
-                const data = await response.json();
-                const aiResponse = data.candidates[0].content.parts[0].text;
-                document.getElementById(loadingId).innerText = aiResponse;
-            } catch (error) {
-                document.getElementById(loadingId).innerText = "အင်တာနက်လိုင်း သို့မဟုတ် ကုဒ်တစ်ခုခု မှားယွင်းနေပါတယ် ကိုကိုကြီး။";
-            }
-            content.scrollTop = content.scrollHeight;
-        }
-    </script>
 </body>
 </html>
