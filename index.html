@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="my">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,16 +7,14 @@
     <style>
         body { background-color: #000; color: #D4AF37; font-family: 'Times New Roman', serif; text-align: center; margin: 0; padding: 20px; display: flex; flex-direction: column; min-height: 100vh; justify-content: center; position: relative; }
         .hero { border: 2px solid #D4AF37; padding: 40px 20px; margin-bottom: 30px; border-radius: 15px; background: rgba(212, 175, 55, 0.05); }
-        h1 { font-size: 2.5rem; letter-spacing: 5px; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        h1 { font-size: 2.5rem; letter-spacing: 5px; margin: 0; }
         .tagline { color: #888; letter-spacing: 3px; font-size: 0.9rem; margin-top: 10px; }
-        .btn { background: linear-gradient(45deg, #D4AF37, #F9E498); color: #000; padding: 15px 40px; border-radius: 30px; font-weight: bold; text-decoration: none; display: inline-block; margin-top: 25px; transition: 0.3s; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); }
+        .btn { background: linear-gradient(45deg, #D4AF37, #F9E498); color: #000; padding: 15px 40px; border-radius: 30px; font-weight: bold; text-decoration: none; display: inline-block; margin-top: 25px; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); }
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; max-width: 400px; margin: 20px auto; }
-        .box { border: 1px solid #333; padding: 12px; color: #D4AF37; text-decoration: none; font-size: 0.75rem; letter-spacing: 1px; border-radius: 8px; transition: 0.3s; display: block; }
+        .box { border: 1px solid #333; padding: 12px; color: #D4AF37; text-decoration: none; font-size: 0.75rem; border-radius: 8px; display: block; }
         .box:hover { border-color: #D4AF37; background: #111; }
-
-        /* Chatbot Styling */
         #ai-btn { position: fixed; bottom: 20px; right: 20px; cursor: pointer; z-index: 1000; }
-        #chat-window { display: none; position: fixed; bottom: 85px; right: 20px; width: 320px; height: 450px; background: #111; border: 1px solid #D4AF37; border-radius: 15px; flex-direction: column; z-index: 1000; text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        #chat-window { display: none; position: fixed; bottom: 85px; right: 20px; width: 320px; height: 450px; background: #111; border: 1px solid #D4AF37; border-radius: 15px; flex-direction: column; z-index: 1000; text-align: left; }
         #chat-header { background: #D4AF37; color: #000; padding: 15px; border-radius: 13px 13px 0 0; font-weight: bold; display: flex; justify-content: space-between; }
         #chat-content { flex: 1; overflow-y: auto; padding: 15px; color: #eee; font-family: sans-serif; display: flex; flex-direction: column; }
         .input-area { padding: 10px; border-top: 1px solid #333; display: flex; }
@@ -28,70 +26,52 @@
     </style>
 </head>
 <body>
-
     <div class="hero">
         <h1>EMPIRE</h1>
         <div class="tagline">PREMIUM DIGITAL EXPERIENCE</div>
         <a href="https://google.com" class="btn">ENTER THE EMPIRE</a>
     </div>
-
     <div class="grid">
         <a href="https://www.facebook.com" class="box" target="_blank">FACEBOOK</a>
         <a href="https://t.me" class="box" target="_blank">TELEGRAM</a>
         <a href="https://www.youtube.com" class="box" target="_blank">YOUTUBE</a>
         <a href="https://www.tiktok.com" class="box" target="_blank">TIKTOK</a>
     </div>
-
     <div id="ai-btn" onclick="toggleChat()">
         <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d473530c24e781fb9160.svg" width="50" style="background: #D4AF37; border-radius: 50%; padding: 10px;">
     </div>
-
     <div id="chat-window">
         <div id="chat-header"><span>Empire AI ✨</span><span onclick="toggleChat()" style="cursor:pointer;">✖</span></div>
-        <div id="chat-content"><div class="msg ai-msg">မင်္ဂလာပါ ကိုကိုကြီး! ဘာများ ကူညီပေးရမလဲဟင်?</div></div>
+        <div id="chat-content"><div class="msg ai-msg">မင်္ဂလာပါ! ဘာများ ကူညီပေးရမလဲဟင်?</div></div>
         <div class="input-area">
-            <input type="text" id="user-msg" placeholder="မြန်မာလို မေးမြန်းနိုင်ပါတယ်..." onkeypress="if(event.key==='Enter')askAI()">
+            <input type="text" id="user-msg" placeholder="ဒီမှာ ရိုက်ပါ..." onkeypress="if(event.key==='Enter')askAI()">
             <button id="send-btn" onclick="askAI()">ပို့</button>
         </div>
     </div>
-
     <script>
         const API_KEY = "AIzaSyA0ubyLBeHP2DqNeg6vV62gxS-s82Vp3cI";
-
-        function toggleChat() {
-            const win = document.getElementById('chat-window');
-            win.style.display = (win.style.display === 'flex') ? 'none' : 'flex';
-        }
-
+        function toggleChat() { const win = document.getElementById('chat-window'); win.style.display = (win.style.display === 'flex') ? 'none' : 'flex'; }
         async function askAI() {
             const input = document.getElementById('user-msg');
             const content = document.getElementById('chat-content');
             const userText = input.value.trim();
             if (!userText) return;
-
             content.innerHTML += `<div class="msg user-msg">${userText}</div>`;
             input.value = "";
-            content.scrollTop = content.scrollHeight;
-
             const loadingId = "loading-" + Date.now();
             content.innerHTML += `<div id="${loadingId}" class="msg ai-msg">စဉ်းစားနေပါတယ်...</div>`;
-            content.scrollTop = content.scrollHeight;
-
             try {
                 const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        contents: [{ parts: [{ text: "Always identify the language of user input and respond in that same language. If input is Burmese, reply in Burmese. User: " + userText }] }]
-                    })
+                    body: JSON.stringify({ contents: [{ parts: [{ text: "Identify the language of the user input and respond in that EXACT same language. If input is Burmese, reply in Burmese. User: " + userText }] }] })
                 });
                 const data = await response.json();
                 document.getElementById(loadingId).innerText = data.candidates[0].content.parts[0].text;
-            } catch (error) {
-                document.getElementById(loadingId).innerText = "အမှားတစ်ခုရှိနေပါတယ် ကိုကိုကြီး။ VPN ကို စစ်ပေးပါ။";
-            }
+            } catch (error) { document.getElementById(loadingId).innerText = "အမှားတစ်ခုရှိနေပါတယ်။ VPN ချိတ်ထားလား စစ်ပေးပါ။"; }
             content.scrollTop = content.scrollHeight;
         }
     </script>
 </body>
 </html>
+     
